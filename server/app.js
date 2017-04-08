@@ -4,7 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 //Database module
-
+var db = require('./modules/db.js');
 //Route Modules
 
 //App Config
@@ -17,6 +17,7 @@ app.use(express.static('server/public'));
 
 
 //Routes
+
 app.get('/', function(req, res) {
   res.sendFile(path.resolve('server/public/views/index.html'));
 });
