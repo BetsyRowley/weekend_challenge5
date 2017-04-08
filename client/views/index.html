@@ -14,21 +14,61 @@
   <body>
     <div class="jumbotron">
       <h1>Mega Movie Search</h1>
-    </div>
-
-    <div class="container" ng-controller = "SearchController">
-      <input ng-model = "movie.title" type="text" placeholder="Search Movie by Title">
-      <button type="button" class = "btn btn-primary">
-            <span ng-click = "addMovie(movie)" class = "glyphicon glyphicon-search">
-                  Search</span></button>
-    </div>
-
-    <div class="container" ng-controller = "ResultsController">
-      <div ng-repeat = "m in movieArray track by $index">
-        {{m.title}}
+      <div class="container" ng-controller = "SearchController">
+        <input ng-model = "title" type="text" placeholder="Search Movie by Title">
+        <button type="button" class = "btn btn-primary">
+              <span ng-click = "getOMDB(title)" class = "glyphicon glyphicon-search">
+                    Search</span></button>
       </div>
     </div>
 
+    <div class="container" ng-controller = "ResultsController">
+      <h3>Search Result</h3>
+      <div ng-show = "omdbResults.response">
+        <div class="col-md-6">
+          <h4>{{omdbResults.response.data.Title}}</h4>
+          <p><b>Year: </b>{{omdbResults.response.data.Year}}
+                <b>Rated: </b>{{omdbResults.response.data.Rated}}
+                <b>Runtime: </b>{{omdbResults.response.data.Runtime}}</p>
+          <p><b>Genre: </b>{{omdbResults.response.data.Genre}}
+                <b>BoxOffice: </b>{{omdbResults.response.data.BoxOffice}}</p>
+          <p><b>Director: </b>{{omdbResults.response.data.Director}}</p>
+          <p><b>Actors: </b>{{omdbResults.response.data.Actors}}</p>
+          <p><b>Awards: </b>{{omdbResults.response.data.Awards}}</p>
+          <p><b>Plot: </b>{{omdbResults.response.data.Plot}}</p>
+          <button type="button" ng-click = addFavoriteMovie(omdbResults.response)
+                  class = "btn btn-warning">Add to Favorites</button>
+        </div>
+        <div class="col-md-6">
+          <img src="{{omdbResults.response.data.Poster}}"
+                alt="{{omdbResults.response.data.Title}} movie poster">
+        </div>
+      </div>
+    </div>
+
+    <div class="container" ng-controller = "FavoritesController">
+      <h3>Your Favorites</h3>
+      <div ng-repeat = "movie in favoritesArray track by $index">
+        <div class="col-md-6">
+          <h4>{{movie.data.Title}}</h4>
+          <p><b>Year: </b>{{movie.data.Year}}
+                <b>Rated: </b>{{movie.data.Rated}}
+                <b>Runtime: </b>{{movie.data.Runtime}}</p>
+          <p><b>Genre: </b>{{movie.data.Genre}}
+                <b>BoxOffice: </b>{{movie.data.BoxOffice}}</p>
+          <p><b>Director: </b>{{movie.data.Director}}</p>
+          <p><b>Actors: </b>{{movie.data.Actors}}</p>
+          <p><b>Awards: </b>{{movie.data.Awards}}</p>
+          <p><b>Plot: </b>{{movie.data.Plot}}</p>
+          <button type="button" class = "btn btn-danger">Delete from Favorites</button>
+        </div>
+        <div class="col-md-6">
+          <img src="{{movie.data.Poster}}"
+                alt="{{movie.data.Title}} movie poster">
+        </div>
+      </div>
+
+    </div>
 
   </body>
 </html>
