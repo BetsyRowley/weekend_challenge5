@@ -20,7 +20,9 @@ movieApp.controller('ResultsController', ['$scope', 'BlockbusterService',
   var blockbusterService = BlockbusterService;
 
   $scope.omdbResults = blockbusterService.omdbResults;
+  $scope.postMyDb = blockbusterService.postMyDb;
   $scope.addFavoriteMovie = blockbusterService.addFavoriteMovie;
+
 }]); //End ResultsController
 
 //FavoritesController
@@ -40,10 +42,18 @@ movieApp.factory('BlockbusterService', ['$http', function($http) {
 
   var favoritesArray = [];
 
+  var postMyDb = function(newFavorite) {
+    $http.post('/favorites').then(function(successCallback) {
+      console.log('Saved to personal db: ' + newFavorite);
+      res.sendStatus(200);
+    });
+  };
+
   var addFavoriteMovie = function(newMovie) {
     var copy = angular.copy(newMovie);
     favoritesArray.push(copy);
     console.log(favoritesArray);
+    postMyDb(omdbResults.response.data);
   };
 
   return {
@@ -58,6 +68,7 @@ movieApp.factory('BlockbusterService', ['$http', function($http) {
                                                 omdbResults.response = response;
                                                 console.log(omdbResults.response);
       });
-    }
+    },
+    postMyDb : postMyDb
   };
 }]); //End Factory

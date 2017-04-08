@@ -13,17 +13,16 @@
   </head>
   <body>
     <div class="jumbotron">
-      <h1>Mega Movie Search</h1>
+      <h1>Mega Movie Search </h1>
       <div class="container" ng-controller = "SearchController">
         <input ng-model = "title" type="text" placeholder="Search Movie by Title">
-        <button type="button" class = "btn btn-primary">
-              <span ng-click = "getOMDB(title)" class = "glyphicon glyphicon-search">
-                    Search</span></button>
+        <button type="button" class = "btn btn-primary" ng-click = "getOMDB(title)">
+              Search</button>
       </div>
     </div>
 
     <div class="container" ng-controller = "ResultsController">
-      <h3>Search Result</h3>
+      <h3>Search Result <span class = "glyphicon glyphicon-facetime-video"></span></h3>
       <div ng-show = "omdbResults.response">
         <div class="col-md-6">
           <h4>{{omdbResults.response.data.Title}}</h4>
@@ -40,34 +39,32 @@
                   class = "btn btn-warning">Add to Favorites</button>
         </div>
         <div class="col-md-6">
-          <img src="{{omdbResults.response.data.Poster}}"
-                alt="{{omdbResults.response.data.Title}} movie poster">
+          <img src= "{{omdbResults.response.data.Poster}}"
+                alt= "{{omdbResults.response.data.Title}} movie poster">
         </div>
       </div>
     </div>
 
     <div class="container" ng-controller = "FavoritesController">
-      <h3>Your Favorites</h3>
+      <h3>Your Favorites <span class = "glyphicon glyphicon-star"></span></h3>
       <div ng-repeat = "movie in favoritesArray track by $index">
-        <div class="col-md-6">
-          <h4>{{movie.data.Title}}</h4>
-          <p><b>Year: </b>{{movie.data.Year}}
-                <b>Rated: </b>{{movie.data.Rated}}
-                <b>Runtime: </b>{{movie.data.Runtime}}</p>
-          <p><b>Genre: </b>{{movie.data.Genre}}
-                <b>BoxOffice: </b>{{movie.data.BoxOffice}}</p>
-          <p><b>Director: </b>{{movie.data.Director}}</p>
-          <p><b>Actors: </b>{{movie.data.Actors}}</p>
-          <p><b>Awards: </b>{{movie.data.Awards}}</p>
-          <p><b>Plot: </b>{{movie.data.Plot}}</p>
-          <button type="button" class = "btn btn-danger">Delete from Favorites</button>
-        </div>
-        <div class="col-md-6">
-          <img src="{{movie.data.Poster}}"
-                alt="{{movie.data.Title}} movie poster">
-        </div>
+          <div class="favorites well col-md-4">
+              <h4>{{movie.data.Title}}</h4>
+              <img src= "{{movie.data.Poster}}"
+                    alt= "{{movie.data.Title}} movie poster">
+              <!-- <p><b>Year: </b>{{movie.data.Year}}
+                    <b>Rated: </b>{{movie.data.Rated}}
+                    <b>Runtime: </b>{{movie.data.Runtime}}</p>
+              <p><b>Genre: </b>{{movie.data.Genre}}
+                    <b>BoxOffice: </b>{{movie.data.BoxOffice}}</p>
+              <p><b>Director: </b>{{movie.data.Director}}</p>
+              <p><b>Actors: </b>{{movie.data.Actors}}</p>
+              <p><b>Awards: </b>{{movie.data.Awards}}</p> -->
+              <!-- <p><b>Plot: </b>{{movie.data.Plot}}</p> -->
+              <button type="button" class = "btn btn-danger">
+                  Delete from Favorites</button>
+            </div>
       </div>
-
     </div>
 
   </body>

@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 
 //Database module
 var db = require('./modules/db.js');
+
 //Route Modules
+var favorites = require('./routes/favorites.js');
 
 //App Config
 app.set('port', (process.env.PORT || 8000));
@@ -17,6 +19,7 @@ app.use(express.static('server/public'));
 
 
 //Routes
+app.use('/favorites', favorites);
 
 app.get('/', function(req, res) {
   res.sendFile(path.resolve('server/public/views/index.html'));

@@ -1,5 +1,13 @@
 .jumbotron {
   text-align: center;
+  /*background-color: black;*/
+  background-image: url("http://www.webweaver.nu/clipart/img/web/backgrounds/space-sky/night-sky-stars.gif");
+  color: goldenrod;
+
+}
+
+input {
+  color: black;
 }
 
 h4 {
