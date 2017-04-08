@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html ng-app = "movieApp">
   <head>
     <meta charset="utf-8">
     <title>Betsy's Movie Search</title>
+
+    <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script type="text/javascript" src = "vendors/angular/angular.min.js"></script>
+    <script type="text/javascript" src = "scripts/client.min.js"></script>
+
   </head>
   <body>
-    <h1>Betsy's Movie Search</h1>
+    <div class="jumbotron">
+      <h1>Mega Movie Search</h1>
+    </div>
+
+    <div class="container" ng-controller = "SearchController">
+      <input ng-model = "movie.title" type="text" placeholder="Search Movie by Title">
+      <button type="button" class = "btn btn-primary">
+            <span ng-click = "addMovie(movie)" class = "glyphicon glyphicon-search">
+                  Search</span></button>
+    </div>
+
+    <div class="container" ng-controller = "ResultsController">
+      <div ng-repeat = "m in movieArray track by $index">
+        {{m.title}}
+      </div>
+    </div>
+
+
   </body>
 </html>
