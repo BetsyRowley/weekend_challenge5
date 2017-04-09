@@ -47,21 +47,20 @@
 
     <div class="container" ng-controller = "FavoritesController" ng-init = "getFavorites()">
       <h3>Your Favorites <span class = "glyphicon glyphicon-star"></span></h3>
-      <div ng-repeat = "movie in favoriteMovies track by $index">
+      <div ng-repeat = "movie in favoriteMovies.response.data track by $index">
           <div class="favorites well col-md-4">
-              <p>{{movie.data[0].title}}</p>
-              <h4>{{movie.data.Title}}</h4>
-              <img src= "{{movie.data[0].Poster}}"
-                    alt= "{{movie.data[0].Title}} movie poster">
-              <!-- <p><b>Year: </b>{{movie.data.Year}}
-                    <b>Rated: </b>{{movie.data.Rated}}
-                    <b>Runtime: </b>{{movie.data.Runtime}}</p>
-              <p><b>Genre: </b>{{movie.data.Genre}}
-                    <b>BoxOffice: </b>{{movie.data.BoxOffice}}</p>
-              <p><b>Director: </b>{{movie.data.Director}}</p>
-              <p><b>Actors: </b>{{movie.data.Actors}}</p>
-              <p><b>Awards: </b>{{movie.data.Awards}}</p> -->
-              <!-- <p><b>Plot: </b>{{movie.data.Plot}}</p> -->
+              <h4>{{movie.title}}</h4>
+              <img src= "{{movie.poster}}"
+                    alt= "{{movie.title}} movie poster">
+              <!-- <p><b>Year: </b>{{movie.year}}
+                    <b>Rated: </b>{{movie.rated}}
+                    <b>Runtime: </b>{{movie.runtime}}</p>
+              <p><b>Genre: </b>{{movie.genre}}
+                    <b>BoxOffice: </b>{{movie.boxoffice}}</p>
+              <p><b>Director: </b>{{movie.director}}</p>
+              <p><b>Actors: </b>{{movie.actors}}</p>
+              <p><b>Awards: </b>{{movie.awards}}</p>
+              <p><b>Plot: </b>{{movie.plot}}</p> -->
               <button type="button" class = "btn btn-danger">
                   Delete from Favorites</button>
             </div>
