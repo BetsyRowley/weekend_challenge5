@@ -19,9 +19,20 @@ var FavoritesSchema = mongoose.Schema({
 var Favorites = mongoose.model('Favorites', FavoritesSchema, 'favorites');
 
 //GET all favorites
+router.get('/', function(req, res) {
+  Favorites.find(function(err, allFavorites) {
+    if(err) {
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      res.send(allFavorites);
+    }
+  });
+});
 
 //POST new favorite
 router.post('/', function(req, res) {
+  console.log(req.body);
   var favorite = new Favorites();
   favorite.title = req.body.title;
   favorite.actors = req.body.actors;

@@ -45,13 +45,14 @@
       </div>
     </div>
 
-    <div class="container" ng-controller = "FavoritesController">
+    <div class="container" ng-controller = "FavoritesController" ng-init = "getFavorites()">
       <h3>Your Favorites <span class = "glyphicon glyphicon-star"></span></h3>
-      <div ng-repeat = "movie in favoritesArray track by $index">
+      <div ng-repeat = "movie in favoriteMovies track by $index">
           <div class="favorites well col-md-4">
-              <h4>{{movie.data.Title}}</h4>
+              <p>{{movie.data[0].title}}</p>
+              <!-- <h4>{{movie.data.Title}}</h4>
               <img src= "{{movie.data.Poster}}"
-                    alt= "{{movie.data.Title}} movie poster">
+                    alt= "{{movie.data.Title}} movie poster"> -->
               <!-- <p><b>Year: </b>{{movie.data.Year}}
                     <b>Rated: </b>{{movie.data.Rated}}
                     <b>Runtime: </b>{{movie.data.Runtime}}</p>
