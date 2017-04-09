@@ -50,9 +50,9 @@
       <div ng-repeat = "movie in favoriteMovies track by $index">
           <div class="favorites well col-md-4">
               <p>{{movie.data[0].title}}</p>
-              <!-- <h4>{{movie.data.Title}}</h4>
-              <img src= "{{movie.data.Poster}}"
-                    alt= "{{movie.data.Title}} movie poster"> -->
+              <h4>{{movie.data.Title}}</h4>
+              <img src= "{{movie.data[0].Poster}}"
+                    alt= "{{movie.data[0].Title}} movie poster">
               <!-- <p><b>Year: </b>{{movie.data.Year}}
                     <b>Rated: </b>{{movie.data.Rated}}
                     <b>Runtime: </b>{{movie.data.Runtime}}</p>

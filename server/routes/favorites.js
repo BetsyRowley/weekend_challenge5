@@ -32,19 +32,19 @@ router.get('/', function(req, res) {
 
 //POST new favorite
 router.post('/', function(req, res) {
-  console.log(req.body);
+  console.log('Data received from server: ', req.body.data);
   var favorite = new Favorites();
-  favorite.title = req.body.title;
-  favorite.actors = req.body.actors;
-  favorite.awards = req.body.awards;
-  favorite.boxoffice = req.body.boxoffice;
-  favorite.director = req.body.director;
-  favorite.genre = req.body.genre;
-  favorite.plot = req.body.plot;
-  favorite.rated = req.body.rated;
-  favorite.runtime = req.body.runtime;
-  favorite.year = req.body.year;
-  favorite.poster = req.body.poster;
+  favorite.title = req.body.data.Title;
+  favorite.actors = req.body.data.Actors;
+  favorite.awards = req.body.data.Awards;
+  favorite.boxoffice = req.body.data.BoxOffice;
+  favorite.director = req.body.data.Director;
+  favorite.genre = req.body.data.Genre;
+  favorite.plot = req.body.data.Plot;
+  favorite.rated = req.body.data.Rated;
+  favorite.runtime = req.body.data.Runtime;
+  favorite.year = req.body.data.Year;
+  favorite.poster = req.body.data.Poster;
   favorite.save(function(err, savedFavorite) {
     if(err) {
       console.log(err);

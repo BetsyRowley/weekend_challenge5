@@ -20,8 +20,9 @@ movieApp.controller('ResultsController', ['$scope', 'BlockbusterService',
   var blockbusterService = BlockbusterService;
 
   $scope.omdbResults = blockbusterService.omdbResults;
-  // $scope.postMyDb = blockbusterService.postMyDb;
-  // $scope.addFavoriteMovie = blockbusterService.addFavoriteMovie;
+  $scope.postMyDb = blockbusterService.postMyDb;
+  $scope.addFavoriteMovie = blockbusterService.addFavoriteMovie;
+  $scope.postFavoriteMovie = blockbusterService.postFavoriteMovie;
 
 }]); //End ResultsController
 
@@ -42,28 +43,34 @@ movieApp.factory('BlockbusterService', ['$http', function($http) {
 
   var omdbResults = {};
   var favoriteMovies = {};
+  var postFavoriteMovie = {};
 
   // var favoritesArray = [];
-  //
-  // var postMyDb = function(newFavorite) {
-  //   $http.post('/favorites').then(function(successCallback) {
-  //     console.log('Saved to personal db: ' + newFavorite);
-  //   });
-  // };
-  //
-  // var addFavoriteMovie = function(newMovie) {
-  //   var copy = angular.copy(newMovie);
-  //   favoritesArray.push(copy);
-  //   console.log('Sent to favoritesArray on the DOM: ', favoritesArray);
-  //   postMyDb(copy.data);
-  // };
+
+  var postMyDb = function(newFavorite) {
+    console.log(newFavorite);
+    $http.post('/favorites', newFavorite).then(function(response) {
+      postFavoriteMovie.response = response;
+      console.log('Saved to personal db: ', postFavoriteMovie.response);
+      getFavorites();
+    });
+  };
+
+  var addFavoriteMovie = function(newMovie) {
+    var copy = angular.copy(newMovie);
+    // favoritesArray.push(copy);
+    // console.log('Sent to favoritesArray on the DOM: ', favoritesArray);
+    console.log('copy from clicking favotite: ', copy);
+    postMyDb(copy);
+  };
 
   return {
     // favoritesArray : favoritesArray,
-    // addFavoriteMovie : addFavoriteMovie,
+    addFavoriteMovie : addFavoriteMovie,
     omdbResults : omdbResults,
     favoriteMovies : favoriteMovies,
-    // postMyDb : postMyDb,
+    postFavoriteMovie: postFavoriteMovie,
+    postMyDb : postMyDb,
     getOMDB : function(searchTitle) {
       var movie = angular.copy(searchTitle);
       console.log('Searched OMDB for: ', movie);
@@ -76,7 +83,7 @@ movieApp.factory('BlockbusterService', ['$http', function($http) {
     getFavorites : function() {
       $http.get('/favorites').then(function(response) {
           favoriteMovies.response = response;
-          console.log(favoriteMovies.response);
+          console.log('All favorites from mongo: ', favoriteMovies.response);
 
       });
     }
