@@ -33,6 +33,7 @@ var blockbusterService = BlockbusterService;
 
 $scope.favoriteMovies = blockbusterService.favoriteMovies;
 $scope.getFavorites = blockbusterService.getFavorites;
+$scope.deleteFavorite = blockbusterService.deleteFavorite;
 
 
 }]); //End FavoritesController
@@ -65,6 +66,14 @@ movieApp.factory('BlockbusterService', ['$http', function($http) {
     postMyDb(copy);
   };
 
+  var deleteFavorite = function(movie) {
+    console.log(movie._id);
+    $http.delete('/favorites/' + movie._id).then(function(response) {
+      console.log(response);
+    });
+    getFavorites();
+  };
+
   return {
     omdbResults : omdbResults,
     favoriteMovies : favoriteMovies,
@@ -72,6 +81,7 @@ movieApp.factory('BlockbusterService', ['$http', function($http) {
     postMyDb : postMyDb,
     addFavoriteMovie : addFavoriteMovie,
     getFavorites : getFavorites,
+    deleteFavorite : deleteFavorite,
     getOMDB : function(searchTitle) {
       var movie = angular.copy(searchTitle);
       console.log('Searched OMDB for: ', movie);

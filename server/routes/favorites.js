@@ -55,4 +55,17 @@ router.post('/', function(req, res) {
   });
 });
 
+//Delete from favorites
+router.delete('/:id', function(req, res) {
+  var id = req.params.id;
+  Favorites.findByIdAndRemove(id, function(err, deletedFavorite) {
+    if(err) {
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      res.send(deletedFavorite);
+    }
+  });
+});
+
 module.exports = router;
