@@ -13,3 +13,7 @@ input {
 h4 {
   text-align: center;
 }
+
+.favorites {
+  height: 550px;
+}
