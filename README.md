@@ -1,8 +1,10 @@
-# Movie Search
+# [Movie Search](https://betsy-movie-search.herokuapp.com/)
 
 This weekend challenged uses the MEAN stack and the OMDB API to create an application that can search for movies. A user can also store their favorites in the database, as well as delete a stored favorite.
 
 This challenge introduces AngularJS and the concept of using Controllers and Factories.
+
+****UPDATE: OMDB API is no longer free so this application currently does connect to OMDB API.
 
 ![Movie Search](MovieSearch.png)
 
